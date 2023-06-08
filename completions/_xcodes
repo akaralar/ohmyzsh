@@ -77,11 +77,13 @@ _xcodes_download() {
     local -a args
     args+=(
         ':version:{_custom_completion $_xcodes_commandname ---completion download -- version $words}'
-        '--latest[Update and then download the latest non-prerelease version available.]'
+        '--latest[Update and then download the latest release version available.]'
         '--latest-prerelease[Update and then download the latest prerelease version available, including GM seeds and GMs.]'
         '--aria2[The path to an aria2 executable. Searches $PATH by default.]:aria2:_files'
         '--no-aria2[Don'"'"'t use aria2 to download Xcode, even if its available.]'
         '--directory[The directory to download Xcode to. Defaults to ~/Downloads.]:directory:_files -/'
+        '--use-fastlane-auth[Use fastlane spaceship session.]'
+        '--fastlane-user[The fastlane spaceship user]:fastlane-user:{local -a list; list=(${(f)"$(ls file:///Users/akaralar/.fastlane/spaceship)"}); _describe '''' list}'
         '--data-source[The data source for available Xcode versions.]:data-source:(apple xcodeReleases)'
         '--color[Determines whether output should be colored.]'
         '--no-color[Determines whether output should be colored.]'
@@ -98,7 +100,7 @@ _xcodes_install() {
     args+=(
         ':version:{_custom_completion $_xcodes_commandname ---completion install -- version $words}'
         '--path[Local path to Xcode .xip]:path:_files -g '"'"'*.xip'"'"''
-        '--latest[Update and then install the latest non-prerelease version available.]'
+        '--latest[Update and then install the latest release version available.]'
         '--latest-prerelease[Update and then install the latest prerelease version available, including GM seeds and GMs.]'
         '--aria2[The path to an aria2 executable. Searches $PATH by default.]:aria2:_files'
         '--no-aria2[Don'"'"'t use aria2 to download Xcode, even if its available.]'
@@ -109,6 +111,8 @@ _xcodes_install() {
         '--no-superuser[Don'"'"'t ask for superuser (root) permission. Some optional steps of the installation will be skipped.]'
         '--empty-trash[Completely delete Xcode .xip after installation, instead of keeping it on the user'"'"'s Trash.]'
         '--directory[The directory to install Xcode into. Defaults to /Applications.]:directory:_files -/'
+        '--use-fastlane-auth[Use fastlane spaceship session.]'
+        '--fastlane-user[The fastlane spaceship user.]:fastlane-user:{local -a list; list=(${(f)"$(ls file:///Users/akaralar/.fastlane/spaceship)"}); _describe '''' list}'
         '--data-source[The data source for available Xcode versions.]:data-source:(apple xcodeReleases)'
         '--color[Determines whether output should be colored.]'
         '--no-color[Determines whether output should be colored.]'
@@ -163,18 +167,39 @@ _xcodes_runtimes() {
         (command)
             local subcommands
             subcommands=(
+                'download:Download a specific simulator runtime'
                 'install:Download and install a specific simulator runtime'
             )
             _describe "subcommand" subcommands
             ;;
         (arg)
             case ${words[1]} in
+                (download)
+                    _xcodes_runtimes_download
+                    ;;
                 (install)
                     _xcodes_runtimes_install
                     ;;
             esac
             ;;
     esac
+
+    return ret
+}
+
+_xcodes_runtimes_download() {
+    integer ret=1
+    local -a args
+    args+=(
+        ':version:'
+        '--aria2[The path to an aria2 executable. Searches $PATH by default.]:aria2:_files'
+        '--no-aria2[Don'"'"'t use aria2 to download the runtime, even if its available.]'
+        '--directory[The directory to download the runtime archive to. Defaults to ~/Downloads.]:directory:_files -/'
+        '--color[Determines whether output should be colored.]'
+        '--no-color[Determines whether output should be colored.]'
+        '(-h --help)'{-h,--help}'[Show help information.]'
+    )
+    _arguments -w -s -S $args[@] && ret=0
 
     return ret
 }
