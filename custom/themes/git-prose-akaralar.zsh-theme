@@ -1,12 +1,12 @@
 : ${omg_ungit_prompt:=$PS1}
 : ${omg_second_line:="%~ • "}
-: ${omg_is_a_git_repo_symbol:=$i_oct_octoface}                      #  i_fa_git 
-: ${omg_has_untracked_files_symbol:=$i_fa_file_o}                   #  i_oct_star 
+: ${omg_is_a_git_repo_symbol:=$i_cod_octoface}                      #  i_fa_git  i_oct_mark_github 
+: ${omg_has_untracked_files_symbol:=$i_fa_keyboard_o}               #  i_oct_star 
 : ${omg_has_adds_symbol:=$i_fa_plus}                                # 
 : ${omg_has_deletions_symbol:=$i_fa_minus}                          # 
-: ${omg_has_cached_deletions_symbol:=$i_oct_x}                      # 
-: ${omg_has_modifications_symbol:=$i_oct_keyboard}                  # 
-: ${omg_has_cached_modifications_symbol:=$i_fa_file_code_o}         #  i_oct_file_code 
+: ${omg_has_cached_deletions_symbol:=$i_fa_times}                   # 
+: ${omg_has_modifications_symbol:=$i_fa_file_o}                     # 
+: ${omg_has_cached_modifications_symbol:=$i_fa_file_text_o}         #  i_fa_file_code_o  i_oct_file_code 
 : ${omg_ready_to_commit_symbol:=$i_oct_git_commit}                  # 
 : ${omg_is_on_a_tag_symbol:=$i_oct_tag}                             # 
 : ${omg_needs_to_merge_symbol:=$i_oct_repo_forked}                  # 
@@ -16,9 +16,9 @@
 : ${omg_not_tracked_branch_symbol:=$i_fa_laptop}                    # 
 : ${omg_rebase_tracking_branch_symbol:=$i_oct_git_compare}          # 
 : ${omg_merge_tracking_branch_symbol:=$i_oct_git_pull_request}      #  i_oct_git_merge 
-: ${omg_should_push_symbol:=$i_oct_cloud_upload}                    #  i_oct_repo_push 
+: ${omg_should_push_symbol:=$i_cod_cloud_upload}                    #  i_oct_repo_push 
 : ${omg_has_stashes_symbol:=$i_oct_inbox}                           # 
-: ${omg_has_action_in_progress_symbol:=$i_oct_tools}                #  i_fa_wrench  i_fa_cogs  i_oct_pulse 
+: ${omg_has_action_in_progress_symbol:=$i_fae_tools}                #  i_fa_wrench  i_fa_cogs  i_oct_pulse 
 : ${omg_wip_symbol:=$i_fa_flask}                                    # 
 : ${omg_divider:=$i_pl_left_hard_divider}                           # 
 
