@@ -1,12 +1,12 @@
 : ${omg_ungit_prompt:=$PS1}
 : ${omg_second_line:="%~ • "}
 : ${omg_is_a_git_repo_symbol:=$i_cod_octoface}                        #  i_fa_git  i_oct_mark_github 
-: ${omg_has_untracked_files_symbol:=$i_md_file_hidden}                # 󰘓 i_fa_question  i_fa_keyboard_o  i_oct_star 
+: ${omg_has_untracked_files_symbol:=$i_fa_file_o     }                #  i_md_file_hidden 󰘓 i_fa_question  i_oct_star 
 : ${omg_has_adds_symbol:=$i_fa_plus}                                  # 
 : ${omg_has_deletions_symbol:=$i_fa_minus}                            # 
 : ${omg_has_cached_deletions_symbol:=$i_fa_times}                     # 
-: ${omg_has_modifications_symbol:=$i_fa_pencil}                       #  i_fa_file_o 
-: ${omg_has_cached_modifications_symbol:=$i_md_file_document_outline} # 󰧮 i_fa_file_text_o  i_fa_file_code_o  i_oct_file_code 
+: ${omg_has_modifications_symbol:=$i_fa_keyboard_o}                   #  i_fa_pencil 
+: ${omg_has_cached_modifications_symbol:=$i_fa_file_text_o }          #  i_md_file_document_outline 󰧮 i_fa_file_code_o  i_oct_file_code 
 : ${omg_ready_to_commit_symbol:=$i_oct_git_commit}                    # 
 : ${omg_is_on_a_tag_symbol:=$i_oct_tag}                               # 
 : ${omg_needs_to_merge_symbol:=$i_oct_git_merge_queue}                # 
