@@ -16,7 +16,7 @@
 : ${omg_not_tracked_branch_symbol:=$i_fa_laptop}                      # 
 : ${omg_rebase_tracking_branch_symbol:=$i_oct_git_pull_request}       #  i_oct_git_compare 
 : ${omg_merge_tracking_branch_symbol:=$i_oct_git_merge}               # 
-: ${omg_should_push_symbol:=$i_cod_cloud_upload}                      #  i_oct_repo_push 
+: ${omg_should_push_symbol:=$i_oct_repo_push}                         #  i_cod_cloud_upload 
 : ${omg_has_stashes_symbol:=$i_fa_inbox}                              # 
 : ${omg_has_action_in_progress_symbol:=$i_fae_tools}                  #  i_fa_wrench  i_fa_cogs  i_oct_pulse 
 : ${omg_wip_symbol:=$i_fa_flask}                                      # 
