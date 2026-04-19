@@ -121,7 +121,26 @@ if ! command grep -q -Fx "$zcompdump_revision" "$ZSH_COMPDUMP" 2>/dev/null \
   zcompdump_refresh=1
 fi
 
-if [[ "$ZSH_DISABLE_COMPFIX" != true ]]; then
+if (( ${+skip_global_compinit} )); then
+  # skip_global_compinit is set — let another plugin handle compinit.
+  # Provide a stub compdef that queues calls until compinit actually runs.
+  typeset -gHa _omz_compdef_queue=()
+  function compdef() { _omz_compdef_queue+=("${(j: :)@}") }
+  # Hook: replay queued compdef calls after the real compinit runs.
+  # compdef is defined inline by compinit (not autoloadable), so by the
+  # time precmd fires, belak/zsh-utils has already run compinit and the
+  # real compdef is available — just call it directly.
+  function _omz_replay_compdef() {
+    add-zsh-hook -d precmd _omz_replay_compdef
+    local entry; for entry in "${_omz_compdef_queue[@]}"; do
+      compdef ${(z)entry}
+    done
+    unset _omz_compdef_queue
+    unfunction _omz_replay_compdef
+  }
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd _omz_replay_compdef
+elif [[ "$ZSH_DISABLE_COMPFIX" != true ]]; then
   source "$ZSH/lib/compfix.zsh"
   # Load only from secure directories
   compinit -i -d "$ZSH_COMPDUMP"
